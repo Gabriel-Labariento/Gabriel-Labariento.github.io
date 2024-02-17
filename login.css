@@ -1,0 +1,781 @@
+
+/*reset everything*/
+*, *::before,*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0 solid transparent;
+}
+
+/*prevent iOS font size change*/
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* reset body line-height*/
+body {
+  min-height: 100vh;
+  line-height: 1;
+  text-rendering: optimizeSpeed;
+}
+
+/* all media elements set to block and full width*/
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  max-width: 100%;
+}
+
+/* inherit fonts for inputs and buttons*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+/* collapse table*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* assign button hover state*/
+button, [role="button"] {
+  cursor: pointer;
+  background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  &:focus {
+    outline: 0;
+  }
+}
+
+/* reset anchor style*/
+a {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* reset heading style*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* reset list style*/
+ol, ul {
+  list-style: none;
+}
+
+/* reset text input style*/
+[type=date],
+[type=datetime],
+[type=datetime-local],
+[type=email],
+[type=month],
+[type=number],
+[type=password],
+[type=search],
+[type=tel],
+[type=text],
+[type=time],
+[type=url],
+[type=week],
+textarea,
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  &:focus {
+    outline: 0;
+  }
+}
+
+/* reset firefox placeholder opacity*/
+::-moz-placeholder {
+  opacity: 1;
+}
+
+/* reset textarea style*/
+textarea {
+  /* move the label to the top*/
+  vertical-align: top;
+
+  /* turn off scroll bars in IE unless needed*/
+  overflow: auto;
+}
+
+/* reset checkbox and radio style*/
+[type='checkbox'],
+[type='radio'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  &:focus {
+    outline: 0
+  }
+}
+
+/* remove all animations, transitions and smooth scroll for people that prefer not to see them*/
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*HOMEPAGE CSS*/
+
+.header{
+    min-width: 100%;
+    min-height: 3.125rem;
+    background-color: #3C3935;
+}
+
+.banner{
+  background-image: url('images/E-SCLEPIUS WEB DESIGN.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.homePageContainer{
+    min-width: 100vw;
+    padding-left: 7.813rem;
+    height: 90vh;
+}
+
+.homePageContainer1{
+  background-color: #F6F3EE;
+  min-width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+} 
+
+#homepageLogo {
+  padding-top: 6.25rem;
+}
+
+h3.homePage {
+  font-size: 1.875rem;
+  margin-top: -3.125rem;
+  color: #3C3935;
+  font-family: 'oswald', sans-serif;
+  text-align: left;
+  margin-left: 3.563rem;
+}
+
+.homeTagLine{
+  font-family: 'oswald', sans-serif;
+  max-width: 31.25rem;
+  font-size: 1.125rem;
+  margin-top: 1.875rem;
+  margin-left: 0.625rem;
+  font-weight: 350;
+}
+
+#getStarted{
+  border-radius: 0;
+  background-color: #3C3935;
+  color: #fff;
+  font-family: 'oswald', Arial,sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: none;
+  min-height: 2.75rem;
+  min-width: 0.625rem;
+  outline: none;
+  overflow: hidden;
+  padding: 0.563rem 1.25rem 0.5rem;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  width: 20%;
+  margin-top: 3.125rem;
+  margin-left: 0.625rem;
+  display: block;
+}
+
+.homePageFeature{
+  padding: 1.875rem 4.375rem;
+  color: #fff;
+  max-width: 18.75rem;
+  text-align: center;
+}
+
+.homePageFeatures{
+  display:flex;
+  flex-direction: row;
+  background-color: #3C3935;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0.625rem;
+}
+
+.homePageFeature .featureIcon{
+  height: 6.25rem;
+  width: 6.25rem;
+  font-size: 30px;
+}
+
+.homePageFeature:hover{
+  cursor: pointer;
+  border-top: 0.125rem solid white;
+  border-bottom: 0.125rem solid white;
+  transition: 0.5s all;
+}
+
+.homePageNotified{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 3.125rem 0px;
+  width: 100%;
+  justify-content: center;
+}
+.emailForm{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.notifiedTitle{
+  font-size: 2.188rem;
+  font-family: 'oswald', sans-serif;
+  font-weight: 600;
+  color: #3C3935;
+  margin-top: -2.125rem;
+}
+
+.notifiedText{
+  font-size: 1rem;
+  max-width: 34.375rem;
+  margin-top: 1.25rem;
+  color: #3C3935;
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: lighter;
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.formContainer {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: .25rem;
+  flex-direction: row;
+  justify-content: center
+}
+
+.formContainer input {
+  max-width: 40rem;
+  min-width: 20rem;
+  padding: 15px 10px;
+  border: 1px solid #89887E;
+  opacity: 100%;
+  border-radius: 0.063rem;
+}
+
+#notifButton {
+  background-color: #3C3935;
+  font-family: 'oswald', sans-serif;
+  font-weight: 500;
+  display: block;
+  padding: 0.313rem;
+  margin: 1rem auto;
+  border: none;
+  border-radius: 0.625rem;
+  color: white;
+  width: 6.25rem;
+}
+
+.footer{
+  height: 8vh;
+  width: 100%;
+  background-color: #4B4B4A;
+}
+
+@media screen and (max-width: 768px){
+  .homePageContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+
+  #homepageLogo {
+    padding-top: 4.25rem;
+  }
+  
+  h3.homePage {
+    font-size: 1.5rem;
+    margin-top: -11.125rem;
+    color: #3C3935;
+    font-family: 'oswald', sans-serif;
+    text-align: center;
+    margin-left: -0.437rem;
+    padding: 5rem;
+  }
+  
+  .homeTagLine{
+    font-family: 'oswald', sans-serif;
+    font-size: 1.1rem;
+    margin-top: -11rem;
+    margin-left: auto;
+    text-align: center;
+    font-weight: 350;
+    display: block;
+    max-width: none;
+    padding: 2.5rem;
+  }
+  
+  #getStarted{
+    display: block;
+    background-color: #3C3935;
+    color: #fff;
+    font-family: 'oswald', Arial,sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: none;
+    min-height: 2.75rem;
+    min-width: 0.625rem;
+    outline: none;
+    overflow: hidden;
+    padding: 0.563rem 1.25rem 0.5rem;
+    text-align: center;
+    text-transform: none;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+    min-width: 9rem;
+    margin-top: -3.75rem ;
+    margin-left: auto;
+
+  }
+  
+  .homePageNotified{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 3.125rem 0px;
+    width: 100%;
+    justify-content: center;
+  }
+  .emailForm{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  
+  .notifiedTitle{
+    font-size: 2.188rem;
+    font-family: 'oswald', sans-serif;
+    font-weight: 600;
+    color: #3C3935;
+    margin-top: -2.125rem;
+  }
+  
+  .notifiedText{
+    font-size: 1rem;
+    width: 34.375rem;
+    margin-top: 1.25rem;
+    color: #3C3935;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: lighter;
+    margin: 1rem auto;
+    text-align: center;
+  }
+
+}
+
+@media screen and (max-width: 546px){
+  p.notifiedText{
+    max-width: 20rem
+  }
+}
+
+/*LOGIN PAGE CSS */
+
+.loginHeader{
+  margin-bottom: 50px;
+}
+.header{
+display: flex;
+flex-direction: row-reverse;
+flex-wrap: wrap;
+align-items: center;
+}
+.header a{
+font-size: 20px;
+font-family: 'oswald', sans-serif;
+color: #fff;
+text-decoration: none;
+border: 1px solid white;
+padding: 1px 10px 1px 10px;
+margin-right: 50px;
+
+}
+
+.header a:hover{
+background-color: white;
+color: #3C3935;
+transition: 0.5s;
+
+}
+
+
+.logo{
+margin-left: -10px;
+}
+
+.logo:hover{
+opacity: 75%;
+transition: 0.5s;
+}
+.loginHeader h3{
+  font-size: 30px;
+  margin-top: -60px;
+  color: #3C3935;
+  font-family: 'oswald', sans-serif;
+  margin-left: 45px;
+  
+}
+
+#homepageLogo:hover{
+cursor: pointer;
+transform: scale(1.1);
+transition: 0.5s 
+}
+
+.loginMain{
+display: flex;
+justify-content: center;
+flex-direction: column;
+flex-wrap: wrap;
+align-items: center;
+}
+.loginBody {
+max-width: 600px;
+text-align: center;
+border: 2px solid #3C3935;
+padding: 50px;
+background-color: #F6F3EE;
+min-height: 350px;
+margin-bottom: 100px;
+min-width: 40%;
+}
+
+#errorMessage {
+background: #fff;
+text-align: center;
+color: red;
+font-size: 20px;
+padding: 11px;
+}
+.loginInputContainer {
+  display: block;
+  margin-top: 30px;
+}
+
+.loginInputContainer:first-of-type {
+  display: block;
+  margin-top: 10px;
+}
+
+.loginInputContainer label{
+  display: block;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-family: 'oswald', sans-serif;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #3C3935;
+}
+
+.loginInputContainer input{
+  min-height: 40px;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #3C3935;
+  border-radius: 10px;
+}
+
+
+button {
+background-color: #222;
+border-radius: 4px;
+border-style: none;
+box-sizing: border-box;
+color: #fff;
+cursor: pointer;
+display: inline-block;
+font-family: "Farfetch Basis","Helvetica Neue",Arial,sans-serif;
+font-size: 16px;
+font-weight: 700;
+line-height: 1.5;
+margin: 0;
+max-width: none;
+min-height: 44px;
+min-width: 10px;
+outline: none;
+overflow: hidden;
+padding: 9px 20px 8px;
+position: relative;
+text-align: center;
+text-transform: none;
+-webkit-user-select: none;
+user-select: none;
+touch-action: manipulation;
+width: 75%;
+margin-top: 40px;
+border-radius: 40px;
+}
+
+button:hover,
+button:focus {
+opacity: .75;
+}
+
+#loginBody{
+background-image: url(images/E-SCLEPIUS\ WEB\ DESIGN.svg);
+background-repeat: no-repeat;
+background-position: center center;
+background-size: cover;
+margin-top: 0;
+padding-top: 0px;
+}
+
+/* DASHBOARD CSS */
+
+#dashboardMainContainer{
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboardSideBar {
+  width: 20%;
+  background-color: #fff;
+  height: 100vh;
+  transition: width 0.5s ease-in-out;
+}
+
+.dashboardSideBar.minimized{
+  width: 5%;
+  background-color: #3C3935;
+}
+
+.dashboardContentContainer{
+  width: 100%;
+  background-color: #F6F3EE;
+}
+
+#dashboardText.hidden, #campaignText.hidden, #revManText.hidden, #accRecText.hidden, #configText.hidden, #statsText.hidden, #userName.hidden, #sideBarLogo.hidden {
+  display: none;
+  transition: display 0.5s ease-in-out;
+}
+
+#dashboardIcon.minimized, #campaignIcon.minimized, #revManIcon.minimized, #accRecIcon.minimized, #configIcon.minimized, #statsIcon.minimized {
+  color: #fff;
+  margin: 0 auto; 
+}
+
+#dashboardIcon.minimized:hover, #campaignIcon.minimized:hover, #revManIcon.minimized:hover, #accRecIcon.minimized:hover, #configIcon.minimized:hover, #statsIcon.minimized:hover {
+  color: #3C3935;
+  background-color: white;
+}
+.sideBarLogo{
+  display: flex;
+  justify-content: center;
+  align-items:start;
+  margin-top: -10px;
+}
+
+.sideBarLogo img{
+  min-height: 100%;
+  max-width: 100%;
+  transform: scale(0.9);
+}
+
+.sideBarLogo img:hover{
+  opacity: 75%;
+  transition: 0.5s;
+}
+
+.sideBarUser{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.sideBarUser img{
+  max-width: 20%;
+  max-height: 20%;
+  margin-left: 5%;
+}
+
+.sideBarUser span{
+  margin: 0 auto;
+  font-family: 'questrial', sans-serif;
+  font-weight: 600;
+  color: #3C3935;
+  font-size: 20px;
+}
+
+
+.sideBarMenu li{
+  padding: 20px 0px;
+  margin-top: 10px;
+  font-size: 20px;
+  font-family: 'questrial', sans-serif;
+}
+
+.sideBarMenu a{
+  color: #3C3935;
+  text-decoration: none;
+  padding: 20px 160px 20px 20px;
+}
+
+.sideBarMenu a:hover{
+  color: #fff;
+  text-decoration: none;
+}
+
+.sideBarMenu li:hover{
+background-color: #3C3935;
+}
+
+.dashboardTopNav{
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #655A50;
+  min-height: 20px;
+
+}
+
+.dashboardTopNav a{
+  text-decoration: none;
+  font-size: 20px;
+  color: #3C3935
+}
+
+.dashboardTopNav #logOutBtn{
+  float: right;
+}
+
+.dashboardContent{
+  padding: 50px 10px 10px 10px;
+}
+
+.dashboardContentMain{
+  min-height: 100%;
+}
+
+/*ADD USER CSS*/
+
+#appForm{
+  width: 50%;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid #3C3935;
+  border-radius: 5px;
+}
+
+input.appFormInput{
+  width: 100%;
+  min-height: 30px;
+  border: 1px solid lightgray;
+}
+
+div.appFormInputContainer{
+    margin-bottom: 20px;
+}
+
+button#registerBtn{
+  background-color: #222;
+  border-radius: 4px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Farfetch Basis","Helvetica Neue",Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.0;
+  margin: 0;
+  max-width: 30%;
+  min-height: 44px;
+  min-width: 10px;
+  outline: none;
+  overflow: hidden;
+  padding: 10px 15px 9px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  margin-top: 0px;
+  border-radius: 0px;
+}
+
+p.responseMessage{
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+  color: black;
+  padding: 16px;
+  font-size: 16px;
+}
+
+p.responseMessage_success{
+  background-color: aquamarine;
+}
+
+p.responseMessage_error{
+  background-color: lightcoral;
+}
