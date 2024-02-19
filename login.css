@@ -199,7 +199,7 @@ h3.homePage {
   max-width: 31.25rem;
   font-size: 1.125rem;
   margin-top: 1.875rem;
-  margin-left: 0.625rem;
+  margin-left: .625rem;
   font-weight: 350;
 }
 
@@ -213,10 +213,10 @@ h3.homePage {
   line-height: 1.5;
   max-width: none;
   min-height: 2.75rem;
-  min-width: 0.625rem;
+  min-width: .625rem;
   outline: none;
   overflow: hidden;
-  padding: 0.563rem 1.25rem 0.5rem;
+  padding: .563rem 1.25rem .5rem;
   position: relative;
   text-align: center;
   text-transform: none;
@@ -225,7 +225,7 @@ h3.homePage {
   touch-action: manipulation;
   width: 20%;
   margin-top: 3.125rem;
-  margin-left: 0.625rem;
+  margin-left: .625rem;
   display: block;
 }
 
@@ -242,19 +242,19 @@ h3.homePage {
   background-color: #3C3935;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 0.625rem;
+  padding: .625rem;
 }
 
 .homePageFeature .featureIcon{
   height: 6.25rem;
   width: 6.25rem;
-  font-size: 30px;
+  font-size: 1.875rem;
 }
 
 .homePageFeature:hover{
   cursor: pointer;
-  border-top: 0.125rem solid white;
-  border-bottom: 0.125rem solid white;
+  border-top: .125rem solid white;
+  border-bottom: .125rem solid white;
   transition: 0.5s all;
 }
 
@@ -306,10 +306,10 @@ h3.homePage {
 .formContainer input {
   max-width: 40rem;
   min-width: 20rem;
-  padding: 15px 10px;
-  border: 1px solid #89887E;
+  padding: .9375rem .625rem;
+  border: .0625rem solid #89887E;
   opacity: 100%;
-  border-radius: 0.063rem;
+  border-radius: .063rem;
 }
 
 #notifButton {
@@ -317,10 +317,10 @@ h3.homePage {
   font-family: 'oswald', sans-serif;
   font-weight: 500;
   display: block;
-  padding: 0.313rem;
+  padding: .313rem;
   margin: 1rem auto;
   border: none;
-  border-radius: 0.625rem;
+  border-radius: .625rem;
   color: white;
   width: 6.25rem;
 }
@@ -377,10 +377,10 @@ h3.homePage {
     line-height: 1.5;
     max-width: none;
     min-height: 2.75rem;
-    min-width: 0.625rem;
+    min-width: .625rem;
     outline: none;
     overflow: hidden;
-    padding: 0.563rem 1.25rem 0.5rem;
+    padding: .563rem 1.25rem .5rem;
     text-align: center;
     text-transform: none;
     -webkit-user-select: none;
@@ -396,7 +396,7 @@ h3.homePage {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 3.125rem 0px;
+    padding: 3.125rem 0rem;
     width: 100%;
     justify-content: center;
   }
@@ -451,8 +451,8 @@ font-size: 1.25rem;
 font-family: 'oswald', sans-serif;
 color: #fff;
 text-decoration: none;
-border: 0.063rem solid white;
-padding: 0.063rem 0.625rem 0.063rem 0.625rem;
+border: .063rem solid white;
+padding: .063rem .625rem .063rem .625rem;
 margin-right: 3.125rem;
 
 }
@@ -498,7 +498,7 @@ align-items: center;
 .loginBody {
 max-width: 50rem;
 text-align: center;
-border: 0.125rem solid #3C3935;
+border: .125rem solid #3C3935;
 padding: 3.125rem;
 background-color: #F6F3EE;
 min-height: 21.875rem;
@@ -511,7 +511,7 @@ background: #fff;
 text-align: center;
 color: red;
 font-size: 1.25rem;
-padding: 0.688rem;
+padding: .688rem;
 }
 .loginInputContainer {
   display: block;
@@ -520,7 +520,7 @@ padding: 0.688rem;
 
 .loginInputContainer:first-of-type {
   display: block;
-  margin-top: 0.625rem;
+  margin-top: .625rem;
 }
 
 .loginInputContainer label{
@@ -530,7 +530,7 @@ padding: 0.688rem;
   font-family: 'oswald', sans-serif;
   text-align: left;
   font-weight: bold;
-  margin-bottom: 0.313rem;
+  margin-bottom: .313rem;
   color: #3C3935;
 }
 
@@ -562,7 +562,7 @@ min-height: 2.75rem;
 min-width: .625rem;
 outline: none;
 overflow: hidden;
-padding: .5625rem 20px 8px;
+padding: .5625rem 1.25rem .5rem;
 position: relative;
 text-align: center;
 text-transform: none;
@@ -630,7 +630,7 @@ padding-top: 0rem;
   display: flex;
   justify-content: center;
   align-items:start;
-  margin-top: -10px;
+  margin-top: -.625rem;
 }
 
 .sideBarLogo img{
@@ -662,21 +662,22 @@ padding-top: 0rem;
   font-family: 'questrial', sans-serif;
   font-weight: 600;
   color: #3C3935;
-  font-size: 20px;
+  font-size: 1.25rem;
+  padding: .3125rem;
 }
 
 
 .sideBarMenu li{
-  padding: 20px 0px;
-  margin-top: 10px;
-  font-size: 20px;
+  padding: 1.25rem 0rem;
+  margin-top: .625rem;
+  font-size: 1.25rem;
   font-family: 'questrial', sans-serif;
 }
 
 .sideBarMenu a{
   color: #3C3935;
   text-decoration: none;
-  padding: 20px 160px 20px 20px;
+  padding: 1.25rem 10rem 1.25rem 1.25rem;
 }
 
 .sideBarMenu a:hover{
@@ -690,15 +691,15 @@ background-color: #3C3935;
 
 .dashboardTopNav{
   background-color: #fff;
-  padding: 20px;
-  border: 1px solid #655A50;
-  min-height: 20px;
+  padding: 1.25rem;
+  border: .0625rem solid #655A50;
+  min-height: 1.25rem;
 
 }
 
 .dashboardTopNav a{
   text-decoration: none;
-  font-size: 20px;
+  font-size: 1.25rem;
   color: #3C3935
 }
 
@@ -707,7 +708,7 @@ background-color: #3C3935;
 }
 
 .dashboardContent{
-  padding: 3.125rem 10px 10px 10px;
+  padding: 3.125rem .625rem .625rem .625rem;
 }
 
 .dashboardContentMain{
@@ -719,57 +720,57 @@ background-color: #3C3935;
 #appForm{
   width: 50%;
   margin: 0 auto;
-  padding: 10px;
-  border: 1px solid #3C3935;
-  border-radius: 5px;
+  padding: .625rem;
+  border: .0625rem solid #3C3935;
+  border-radius: .3125rem;
 }
 
 input.appFormInput{
   width: 100%;
-  min-height: 30px;
-  border: 1px solid lightgray;
+  min-height: 1.875rem;
+  border: .0625rem solid lightgray;
 }
 
 div.appFormInputContainer{
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 
 button#registerBtn{
   background-color: #222;
-  border-radius: 4px;
+  border-radius: .25rem;
   border-style: none;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
   display: inline-block;
   font-family: "Farfetch Basis","Helvetica Neue",Arial,sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.0;
   margin: 0;
   max-width: 30%;
-  min-height: 44px;
-  min-width: 10px;
+  min-height: 2.75rem;
+  min-width: .625rem;
   outline: none;
   overflow: hidden;
-  padding: 10px 15px 9px;
+  padding: .625rem .9375rem .5625rem;
   position: relative;
   text-align: center;
   text-transform: none;
   -webkit-user-select: none;
   user-select: none;
   touch-action: manipulation;
-  margin-top: 0px;
-  border-radius: 0px;
+  margin-top: 0rem;
+  border-radius: 0rem;
 }
 
 p.responseMessage{
   text-align: center;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   font-weight: bold;
   color: black;
-  padding: 16px;
-  font-size: 16px;
+  padding: 1rem;
+  font-size: 1rem;
 }
 
 p.responseMessage_success{
