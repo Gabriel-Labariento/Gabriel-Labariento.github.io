@@ -431,14 +431,14 @@ h3.homePage {
 
 @media screen and (max-width: 546px){
   p.notifiedText{
-    max-width: 20rem
+    max-width: 20rem;
   }
 }
 
 /*LOGIN PAGE CSS */
 
 .loginHeader{
-  margin-bottom: 50px;
+  margin-bottom: 3.125rem;
 }
 .header{
 display: flex;
@@ -447,13 +447,13 @@ flex-wrap: wrap;
 align-items: center;
 }
 .header a{
-font-size: 20px;
+font-size: 1.25rem;
 font-family: 'oswald', sans-serif;
 color: #fff;
 text-decoration: none;
-border: 1px solid white;
-padding: 1px 10px 1px 10px;
-margin-right: 50px;
+border: 0.063rem solid white;
+padding: 0.063rem 0.625rem 0.063rem 0.625rem;
+margin-right: 3.125rem;
 
 }
 
@@ -466,7 +466,7 @@ transition: 0.5s;
 
 
 .logo{
-margin-left: -10px;
+margin-left: -0.625rem;
 }
 
 .logo:hover{
@@ -474,12 +474,11 @@ opacity: 75%;
 transition: 0.5s;
 }
 .loginHeader h3{
-  font-size: 30px;
-  margin-top: -60px;
+  font-size: 1.875rem;
   color: #3C3935;
   font-family: 'oswald', sans-serif;
-  margin-left: 45px;
-  
+  text-align: center;
+  margin-top: -2.81rem;
 }
 
 #homepageLogo:hover{
@@ -495,74 +494,75 @@ flex-direction: column;
 flex-wrap: wrap;
 align-items: center;
 }
+
 .loginBody {
-max-width: 600px;
+max-width: 50rem;
 text-align: center;
-border: 2px solid #3C3935;
-padding: 50px;
+border: 0.125rem solid #3C3935;
+padding: 3.125rem;
 background-color: #F6F3EE;
-min-height: 350px;
-margin-bottom: 100px;
-min-width: 40%;
+min-height: 21.875rem;
+margin-bottom: 6.25rem;
+min-width: 50%;
 }
 
 #errorMessage {
 background: #fff;
 text-align: center;
 color: red;
-font-size: 20px;
-padding: 11px;
+font-size: 1.25rem;
+padding: 0.688rem;
 }
 .loginInputContainer {
   display: block;
-  margin-top: 30px;
+  margin-top: 1.875rem;
 }
 
 .loginInputContainer:first-of-type {
   display: block;
-  margin-top: 10px;
+  margin-top: 0.625rem;
 }
 
 .loginInputContainer label{
   display: block;
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-family: 'oswald', sans-serif;
   text-align: left;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 0.313rem;
   color: #3C3935;
 }
 
 .loginInputContainer input{
-  min-height: 40px;
+  min-height: 2.5rem;
   width: 100%;
-  padding: 5px;
+  padding: .3125rem;
   text-align: center;
-  border: 1px solid #3C3935;
-  border-radius: 10px;
+  border: .0625rem solid #3C3935;
+  border-radius: .625rem;
 }
 
 
 button {
 background-color: #222;
-border-radius: 4px;
+border-radius: .25rem;
 border-style: none;
 box-sizing: border-box;
 color: #fff;
 cursor: pointer;
 display: inline-block;
 font-family: "Farfetch Basis","Helvetica Neue",Arial,sans-serif;
-font-size: 16px;
+font-size: 1rem;
 font-weight: 700;
 line-height: 1.5;
 margin: 0;
 max-width: none;
-min-height: 44px;
-min-width: 10px;
+min-height: 2.75rem;
+min-width: .625rem;
 outline: none;
 overflow: hidden;
-padding: 9px 20px 8px;
+padding: .5625rem 20px 8px;
 position: relative;
 text-align: center;
 text-transform: none;
@@ -570,8 +570,8 @@ text-transform: none;
 user-select: none;
 touch-action: manipulation;
 width: 75%;
-margin-top: 40px;
-border-radius: 40px;
+margin-top: 2.5rem;
+border-radius: 2.5rem;
 }
 
 button:hover,
@@ -585,7 +585,7 @@ background-repeat: no-repeat;
 background-position: center center;
 background-size: cover;
 margin-top: 0;
-padding-top: 0px;
+padding-top: 0rem;
 }
 
 /* DASHBOARD CSS */
@@ -707,7 +707,7 @@ background-color: #3C3935;
 }
 
 .dashboardContent{
-  padding: 50px 10px 10px 10px;
+  padding: 3.125rem 10px 10px 10px;
 }
 
 .dashboardContentMain{
