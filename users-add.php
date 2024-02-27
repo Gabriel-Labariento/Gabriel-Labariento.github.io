@@ -4,6 +4,7 @@
     if (!isset($_SESSION['user'])) header('location: ../login.php');
     $_SESSION['table'] = 'users';
     $user = $_SESSION['user'];
+    $users = include('database/show-users.php');
 
     // Initialize variables
     $response_message = "";
@@ -40,42 +41,76 @@
     <div class="dashboardContentContainer">
     <?php include('partials/app-topnav.php') ?>
         <div class="dashboardContent">
-            <div class="row"></div>
-            <div class="dashboardContentMain">
-                <div class="" id="userAddFormContainer">
-                    <form action="database/add.php" method="POST" id="appForm">
-                        <div class="appFormInputContainer">
-                            <label for="first_name">First Name</label>
-                            <input type="text" class="appFormInput" name="first_name" id="first_name">
-                        </div>
-                        <div class="appFormInputContainer">
-                            <label for="last_name">Last Name</label>
-                            <input type="text" class="appFormInput" name="last_name" id="last_name">
-                        </div>
-                        <div class="appFormInputContainer">
-                            <label for="email">Email</label>
-                            <input type="text" class="appFormInput" name="email" id="email">
-                        </div>
-                        <div class="appFormInputContainer">
-                            <label for="password">Password</label>
-                            <input type="password" class="appFormInput" name="password" id="password">
-                        </div>
+        <div class="dashboardContentMain">
+            <div class="row">
+                <div class="column column-5">
+                    <h1 class="sectionHeader">Insert User</h1>
+                    <div class="" id="userAddFormContainer">
+                        <form action="database/add.php" method="POST" id="appForm">
+                            <div class="appFormInputContainer">
+                                <label for="first_name">First Name</label>
+                                <input type="text" class="appFormInput" name="first_name" id="first_name">
+                            </div>
+                            <div class="appFormInputContainer">
+                                <label for="last_name">Last Name</label>
+                                <input type="text" class="appFormInput" name="last_name" id="last_name">
+                            </div>
+                            <div class="appFormInputContainer">
+                                <label for="email">Email</label>
+                                <input type="text" class="appFormInput" name="email" id="email">
+                            </div>
+                            <div class="appFormInputContainer">
+                                <label for="password">Password</label>
+                                <input type="password" class="appFormInput" name="password" id="password">
+                            </div>
 
-                        <button id="registerBtn"     type="submit"><i class="fa fa-plus"></i>Add User</button>
-                    </form>
-                    <?php if(isset($_SESSION['response'])){
-                        $response_message = $_SESSION['response']['message'];
-                        $is_success = $_SESSION['response']['success'];}
-                    ?>
-                        <div class="responseMessage">
-                            <p class="responseMessage <?= $is_success ? 'responseMessage_success' : 'responseMessage_error' ?>">
-                                <?= $response_message ?>
-                            </p>
-                        </div>
-                    <?php unset($_SESSION['response']); ?>
-                </div>
-                
+                            <button id="registerBtn"     type="submit"><i class="fa fa-plus"></i>Add User</button>
+                        </form>
+                        <?php if(isset($_SESSION['response'])){
+                            $response_message = $_SESSION['response']['message'];
+                            $is_success = $_SESSION['response']['success'];}
+                        ?>
+                            <div class="responseMessage">
+                                <p class="responseMessage <?= $is_success ? 'responseMessage_success' : 'responseMessage_error' ?>">
+                                    <?= $response_message ?>
+                                </p>
+                            </div>
+                        <?php unset($_SESSION['response']); ?>
+                    </div>
             </div>
+            <div class="column column-7">
+              <h1 class="sectionHeader">List of Users</h1>
+              <div class="sectionContent">
+                <div class="users">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Created At</th>
+                                <th>Updated At</th>
+                            </tr>
+                        </thead>   
+                            <tbody>
+                                <tr>
+                                    <td>Gabriel</td>
+                                    <td>Labariento</td>
+                                    <td>gabriel.labariento@gmail.com</td>
+                                    <td>2/27/24</td>
+                                    <td>2/27/24</td>
+                                </tr>
+                            </body>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+              </div>
+            </div>
+                </div>
+            </div>
+            
         </div>
     </div>
    </div>

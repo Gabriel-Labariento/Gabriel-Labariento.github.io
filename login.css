@@ -595,48 +595,52 @@ padding-top: 0rem;
   flex-direction: row;
 }
 
-.dashboardSideBar {
-  width: 20%;
-  background-color: #fff;
-  height: 100vh;
-  transition: width 0.5s ease-in-out;
-}
-
-.dashboardSideBar.minimized{
-  width: 5%;
-  background-color: #3C3935;
-}
 
 .dashboardContentContainer{
   width: 100%;
   background-color: #F6F3EE;
 }
 
-#dashboardText.hidden, #campaignText.hidden, #revManText.hidden, #accRecText.hidden, #configText.hidden, #statsText.hidden, #userName.hidden, #sideBarLogo.hidden {
+#dashboardText.hidden, #campaignText.hidden, #userName.hidden, #sideBarLogo.hidden {
   display: none;
   transition: display 0.5s ease-in-out;
 }
 
-#dashboardIcon.minimized, #campaignIcon.minimized, #revManIcon.minimized, #accRecIcon.minimized, #configIcon.minimized, #statsIcon.minimized {
+#dashboardIcon.minimized, #campaignIcon.minimized {
   color: #fff;
   margin: 0 auto; 
 }
 
-#dashboardIcon.minimized:hover, #campaignIcon.minimized:hover, #revManIcon.minimized:hover, #accRecIcon.minimized:hover, #configIcon.minimized:hover, #statsIcon.minimized:hover {
+#dashboardIcon.minimized:hover, #campaignIcon.minimized:hover{
   color: #3C3935;
   background-color: white;
 }
+
+.dashboardSideBar {
+  max-width: 15%;
+  min-width: 9.6rem;
+  background-color: #fff;
+  height: 100vh;
+  transition: width 0.5s ease-in-out;
+}
+
+.dashboardSideBar.minimized{
+  max-width: 20%;
+  min-width: 3.5rem;
+  background-color: #3C3935;
+}
+
 .sideBarLogo{
   display: flex;
-  justify-content: center;
-  align-items:start;
-  margin-top: -.625rem;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
 }
 
 .sideBarLogo img{
   min-height: 100%;
-  max-width: 100%;
   transform: scale(0.9);
+  min-width: 100%;
 }
 
 .sideBarLogo img:hover{
@@ -672,12 +676,13 @@ padding-top: 0rem;
   margin-top: .625rem;
   font-size: 1.25rem;
   font-family: 'questrial', sans-serif;
+  max-width: 80%;
 }
 
 .sideBarMenu a{
   color: #3C3935;
   text-decoration: none;
-  padding: 1.25rem 10rem 1.25rem 1.25rem;
+  padding: 1.25rem 1.25rem 1.25rem;
 }
 
 .sideBarMenu a:hover{
@@ -687,6 +692,7 @@ padding-top: 0rem;
 
 .sideBarMenu li:hover{
 background-color: #3C3935;
+max-width: 100%;
 }
 
 .dashboardTopNav{
@@ -715,10 +721,91 @@ background-color: #3C3935;
   min-height: 100%;
 }
 
+/* @media screen and (max-width: 600px) {
+  .dashboardSideBar {
+    max-width: 20%;
+    min-width: 9.6rem;
+    background-color: #fff;
+    height: 100vh;
+    transition: width 0.5s ease-in-out;
+  }
+  
+  .dashboardSideBar.minimized{
+    max-width: 20%;
+    min-width: 3.5rem;
+    background-color: #3C3935;
+  }
+  
+  .sideBarLogo{
+    display: flex;
+      justify-content: center;
+      flex-direction: row;
+      align-items: center;
+  }
+  
+  .sideBarLogo img{
+    min-height: 100%;
+    transform: scale(0.9);
+    min-width: 100%;
+  }
+  
+  .sideBarLogo img:hover{
+    opacity: 75%;
+    transition: 0.5s;
+  }
+  
+  .sideBarUser{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+  }
+  
+  .sideBarUser img{
+    max-width: 20%;
+    max-height: 20%;
+    margin-left: 5%;
+  }
+  
+  .sideBarUser span{
+    margin: 0 auto;
+    font-family: 'questrial', sans-serif;
+    font-weight: 600;
+    color: #3C3935;
+    font-size: 1.25rem;
+    padding: .3125rem;
+  }
+  
+  
+  .sideBarMenu li{
+    padding: 1.25rem 0rem;
+    margin-top: .625rem;
+    font-size: 1.25rem;
+    font-family: 'questrial', sans-serif;
+    max-width: 100%;
+  }
+  
+  .sideBarMenu a{
+    color: #3C3935;
+    text-decoration: none;
+    padding: 1.25rem 1.25rem 1.25rem;
+  }
+  
+  .sideBarMenu a:hover{
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .sideBarMenu li:hover{
+  background-color: #3C3935;
+  }
+} */
+
 /*ADD USER CSS*/
 
 #appForm{
-  width: 50%;
+  width: 90%;
+  min-width: 15rem;
   margin: 0 auto;
   padding: .625rem;
   border: .0625rem solid #3C3935;
@@ -779,4 +866,55 @@ p.responseMessage_success{
 
 p.responseMessage_error{
   background-color: lightcoral;
+} 
+
+.row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column{
+ width: 100%;
+ padding: 0rem .625rem;
+}
+
+.column-5{
+  max-width: 41.67%;
+}
+
+.column-7{
+  max-width: 58.33%;
+}
+
+h1.sectionHeader{
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem; 
+  padding: .625rem;
+  border-bottom:.125rem solid #4B4B4A;
+  color: #4B4B4A;
+  border-left: 0.625rem solid #4B4B4A;
+}
+
+div.users{
+max-width: 100%;
+}
+
+table, td, th {
+  border: 0.0625rem solid #89887E;
+  padding: 0.3125rem;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+table{
+  max-width: 100%;
+}
+
+table th{
+  text-transform: uppercase;
+  text-align: center;
+  background-color: #F6F3EE;
 }
