@@ -91,20 +91,29 @@
                                 <th>Email</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>
+                                <th>Action</th>
                             </tr>
                         </thead>   
                             <tbody>
-                                <tr>
-                                    <td>Gabriel</td>
-                                    <td>Labariento</td>
-                                    <td>gabriel.labariento@gmail.com</td>
-                                    <td>2/27/24</td>
-                                    <td>2/27/24</td>
-                                </tr>
+                                <?php foreach($users as $index => $user){ ?>
+                                    <tr>
+                                        <td><?= $index + 1 ?></td>
+                                        <td><?= $user['first_name'] ?></td>
+                                        <td><?= $user['last_name'] ?></td>
+                                        <td><?= $user['email'] ?></td>
+                                        <td><?= date('M d, Y @ h:i:s A', strtotime($user['updated_at'])) ?></td>
+                                        <td><?= date('M d, Y @ h:i:s A', strtotime($user['created_at'])) ?></td>
+                                        <td>
+                                            <a href="" class=""><i class="fa fa-pencil"></i> Edit<br></a>                                                
+                                            <a href="" class="deleteUser" data-userid="<?= $user['id'] ?>" data-fname="<?= $user['first_name'] ?>" data-lname="<?= $user['last_name'] ?>"> <i class="fa fa-trash"></i> Delete</a>                                    
+                                        </td>
+                                    </tr>
+                                <?php } ?>
                             </body>
                         </tr>
                         </thead>
                     </table>
+                    <p class="userCount"><?= count($users) ?> Users</p>
                 </div>
               </div>
             </div>
@@ -116,5 +125,36 @@
    </div>
 
    <script src="script.js" defer></script>
+   <script>
+        function script(){
+
+            this.initialize = function(){
+                this.registerEvents();
+            },
+
+            this.registerEvents = function(){
+                document.addEventListener('click', function(e){
+                    targetElement = e.target;
+                    classList = e.target.classList;
+
+                    if(classList.contains('deleteUser')){
+                        e.preventDefault;
+                        userId = targetElement.dataset.userId;
+                        fname = targetElement.dataset.fname;
+                        lname = targetElement.dataset.lname;
+                        fullName = fname + ' ' + lname;
+
+                        if (window.confirm('Are you sure to delete '+ fullName + '?')){
+                            
+                        } else 
+                    }
+                })
+
+            }
+        }
+
+        var script = new script;
+        script.initialize;
+   </script>
 </body>
 </html>
