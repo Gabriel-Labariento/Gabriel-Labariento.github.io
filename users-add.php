@@ -124,7 +124,8 @@
     </div>
    </div>
 
-   <script src="script.js" defer></script>
+   <script src="js/script.js" defer></script>
+   <script src="js/jquery/jquery-3.7.1.min.js"></script>
    <script>
         function script(){
 
@@ -145,8 +146,27 @@
                         fullName = fname + ' ' + lname;
 
                         if (window.confirm('Are you sure to delete '+ fullName + '?')){
-                            
-                        } else 
+                            $.ajax({
+                                method: 'POST',
+                                data:  {
+                                    user_id: userId,
+                                    f_name: fname,
+                                    l_name: lname
+                                },
+                                url: 'database/delete-user.php',
+                                dataType:'json',
+                                success: function(data){
+                                    if(data.success){
+                                        if(window.alert(data.message)){
+                                            location.reload()
+                                        }
+                                        else window.alert(data.message);
+                                    }
+                                }
+                            })
+                        } else{
+                            console.log('will not delete.');
+                        } 
                     }
                 })
 
