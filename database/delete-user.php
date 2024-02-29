@@ -8,8 +8,7 @@
 
     try{
         $command = "DELETE from users WHERE id=($user_id)";
-
-    include('connection.php');
+        include('connection.php');
 
     $conn->exec($command);
 
