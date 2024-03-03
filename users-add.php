@@ -24,7 +24,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Inventory Management</title>
-    <link rel="stylesheet" href="login.css"/>
+    <link rel="stylesheet" href="login.css?v=<?= time(); ?>"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
@@ -113,8 +113,8 @@
                         </tr>
                         </thead>
                     </table>
-                    <p class="userCount"><?= count($users) ?> Users</p>
                 </div>
+                <p class="userCount"><?= count($users) ?> Users</p>
               </div>
             </div>
                 </div>
@@ -177,7 +177,7 @@
 </div>
 
 
-   <script src="js/script.js"></script>
+   <script src="js/script.js?v=<?= time(); ?>"></script>
    <script src="js/jquery/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.35.4/css/bootstrap-dialog.min.css" rel="stylesheet">
