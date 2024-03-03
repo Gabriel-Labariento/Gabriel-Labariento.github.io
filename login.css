@@ -731,6 +731,8 @@ color: #F6F3EE;
 
 .dashboardContentMain{
   min-height: 100%;
+  padding-left: 0.625rem;
+  border: 1px solid #C8C8C8;
 }
 
 ul.mainMenu{
@@ -902,7 +904,7 @@ p.responseMessage_error{
 }
 
 .column-7{
-  max-width: 58.33% !important;
+  max-width: 100% !important;
 }
 
 h1.sectionHeader{
@@ -919,6 +921,9 @@ div.users{
 max-width: 100%;
 }
 
+.row{
+  padding-top: 0.625rem;
+}
 table, td, th {
   border: 0.0625rem solid #89887E;
   padding: 0.3125rem;

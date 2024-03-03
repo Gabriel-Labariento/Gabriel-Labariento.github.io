@@ -18,8 +18,8 @@
                         <span class="sideBarText  showHideSubMenu" data-submenu="user" id="userText">PRODUCTS</span>
                         <i class="fa fa-angle-left mainMenuIconArrow showHideSubMenu" data-submenu="user" id="mainMenuIconArrow"></i></a>
                     <ul class="subMenus" id="user">
-                        <li class="subMenuItem"><a href="" class="subMenuLink"><i class="fa fa-circle-o"></i> View products</a></li>
-                        <li class="subMenuItem"><a href="" class="subMenuLink"><i class="fa fa-circle-o"></i> Add product</a></li>
+                        <li class="subMenuItem"><a href="./product-view.php" class="subMenuLink"><i class="fa fa-circle-o"></i> View products</a></li>
+                        <li class="subMenuItem"><a href="./product-add.php" class="subMenuLink"><i class="fa fa-circle-o"></i> Add product</a></li>
                     </ul>
                 </li>
 <!--Supplier Management -->
@@ -40,7 +40,7 @@
                         <span class="sideBarText showHideSubMenu" data-submenu="user" id="userText">USERS</span>
                         <i class="fa fa-angle-left mainMenuIconArrow showHideSubMenu" data-submenu="user" id="mainMenuIconArrow"></i></a>
                     <ul class="subMenus" id="user">
-                        <li class="subMenuItem"><a href="#" class="subMenuLink"><i class="fa fa-circle-o"></i> View users</a></li>
+                        <li class="subMenuItem"><a href="./users-view.php" class="subMenuLink"><i class="fa fa-circle-o"></i> View users</a></li>
                         <li class="subMenuItem"><a href="./users-add.php" class="subMenuLink"><i class="fa fa-circle-o"></i> Add users</a></li>
                     </ul>
                 </li>
