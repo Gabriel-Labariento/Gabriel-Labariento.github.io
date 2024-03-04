@@ -992,3 +992,8 @@ i.mainMenuIconArrow.hidden{
   display: none;
 }
 
+.productTextAreaInput{
+  width: 100%;
+  min-height: 4.6875rem;
+  border-radius: .3125rem;
+}
