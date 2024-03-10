@@ -924,15 +924,16 @@ max-width: 100%;
 .row{
   padding-top: 0.625rem;
 }
+
 table, td, th {
-  border: 0.0625rem solid #89887E;
-  padding: 0.3125rem;
-  border-collapse: collapse;
-  font-size: 1rem;
+  border: 0.0625rem solid #89887E !important; 
+  padding: 0.3125rem !important;
+  border-collapse: collapse !important;
+  font-size: 1rem !important;
 }
 
 table{
-  max-width: 100%;
+  width: 100%;
 }
 
 table th{
@@ -996,4 +997,9 @@ i.mainMenuIconArrow.hidden{
   width: 100%;
   min-height: 4.6875rem;
   border-radius: .3125rem;
+}
+
+.productImages{
+  max-width: 6.25rem;
+  min-height: 6.25rem;
 }

@@ -1,7 +1,7 @@
 <?php
     // Start the session
     session_start();
-    if (!isset($_SESSION['user'])) header('location: ../login.php');
+    if (!isset($_SESSION['user'])) header('location: login.php');
 
     $_SESSION['table'] = 'products';
     $_SESSION['redirect_to'] = 'product-add.php';
@@ -41,16 +41,21 @@
                 <div class="column column-12">
                     <h1 class="sectionHeader">Add Product</h1>
                     <div class="" id="userAddFormContainer">
-                        <form action="database/add.php" method="POST" id="appForm">
+                        
+                        <form action="database/add.php" method="POST" id="appForm" enctype="multipart/form-data">
                             <div class="appFormInputContainer">
-                                <label for="product_name">Product Name</label>
+                                <label for="product_name"><strong>Product Name</strong></label>
                                 <input type="text" class="appFormInput" name="product_name" placeholder="Enter product name..." id="product_name">
                             </div>
                             <div class="appFormInputContainer">
-                                <label for="description">Description</label>
-                                <textarea class="appFormInput procutTextAreaInput" name="description" id="description" placeholder="Enter product description...">
-
+                                <label for="description"><strong>Description</strong></label>
+                                <textarea class="appFormInput productTextAreaInput" name="description" id="description" placeholder="Enter product description...">
                                 </textarea>
+                            </div>
+                            <!--Image Capture-->
+                            <div class="appFormInputContainer">
+                                <label for="img"><strong>Product Image</strong></label><br>
+                                <input type="file" name="img" >
                             </div>
                             <button id="registerBtn"     type="submit"><i class="fa fa-plus"></i>Add Product</button>
                         </form>

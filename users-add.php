@@ -2,7 +2,7 @@
     // Start the session
     session_start();
     if (!isset($_SESSION['user'])) header('location: login.php');
-    $_SESSION['table'] = 'products';
+    $_SESSION['table'] = 'users';
     $_SESSION['redirect_to'] = 'users-add.php';
     $user = $_SESSION['user'];
     $users = include('database/show-users.php');

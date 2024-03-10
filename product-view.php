@@ -2,9 +2,8 @@
     // Start the session
     session_start();
     if (!isset($_SESSION['user'])) header('location: ../login.php');
-    $_SESSION['table'] = 'users';
-    $user = $_SESSION['user'];
-    $users = include('database/show-users.php');
+    $_SESSION['table'] = 'products';
+    $products = include('database/show.php');
 
     // Initialize variables
     $response_message = "";
@@ -23,7 +22,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Users | Inventory Management</title>
+    <title>View Products | Inventory Management</title>
     <?php include('partials/app-header-scripts.php'); ?>
 </head>
 <body id="">
@@ -36,33 +35,37 @@
         <div class="dashboardContentMain">
             <div class="row">
             <div class="column column-12">
-              <h1 class="sectionHeader">List of Users</h1>
+              <h1 class="sectionHeader">List of Products</h1>
               <div class="sectionContent">
                 <div class="users">
                     <table>
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
+                                <th>Image</th>
+                                <th>Product Name</th>
+                                <th>Description</th>
+                                <th>Created By</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>
                                 <th>Action</th>
                             </tr>
                         </thead>   
                             <tbody>
-                                <?php foreach($users as $index => $user){ ?>
+                                <?php foreach($products as $index => $product){ ?>
                                     <tr>
                                         <td><?= $index + 1 ?></td>
-                                        <td class="firstName"><?= $user['first_name'] ?></td>
-                                        <td class="lastName"><?= $user['last_name'] ?></td>
-                                        <td class="email"><?= $user['email'] ?></td>
-                                        <td><?= date('M d, Y @ h:i:s A', strtotime($user['updated_at'])) ?></td>
-                                        <td><?= date('M d, Y @ h:i:s A', strtotime($user['created_at'])) ?></td>
+                                        <td class="firstName">
+                                            <img class="productImages" src="uploads/products/<?= $product['img']?>" alt="">
+                                        </td>
+                                        <td class="lastName"><?= $product['product_name'] ?></td>
+                                        <td class="email"><?= $product['description'] ?></td>
+                                        <td><?= $product['created_by'] ?></td>
+                                        <td><?= date('M d, Y @ h:i:s A', strtotime($product['updated_at'])) ?></td>
+                                        <td><?= date('M d, Y @ h:i:s A', strtotime($product['created_at'])) ?></td>
                                         <td>
-                                            <a href="" class="updateUser" data-userid="<?= $user['id'] ?>"><i class="fa fa-pencil"></i> Edit<br></a>                                                
-                                            <a href="" class="deleteUser" data-userid="<?= $user['id'] ?>" data-fname="<?= $user['first_name'] ?>" data-lname="<?= $user['last_name'] ?>"> <i class="fa fa-trash"></i> Delete</a>                                    
+                                            <a href="" class="updateProduct" data-pid="<?= $product['id'] ?>"><i class="fa fa-pencil"></i> Edit<br></a>                                                
+                                            <a href="" class="deleteProduct" data-name="<?= $product['product_name'] ?>" data-pid="<?= $product['id'] ?>"><i class="fa fa-trash"></i> Delete</a>                                    
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -71,7 +74,7 @@
                         </thead>
                     </table>
                 </div>
-                <p class="userCount"><?= count($users) ?> Users</p>
+                <p class="userCount"><?= count($products) ?> Products</p>
               </div>
             </div>
                 </div>
@@ -80,7 +83,8 @@
         </div>
     </div>
    </div>
-   
+
+   <!-- Bootstrap modals-->
    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -134,6 +138,7 @@
 </div>
 
 
+
     <?php include('partials/app-scripts.php'); ?>
 
     <script>
@@ -147,99 +152,36 @@
                 targetElement = e.target;
                 classList = targetElement.classList;
 
-                if (classList.contains('deleteUser')) {
+                if (classList.contains('deleteProduct')) {
                     e.preventDefault();
-                    userId = targetElement.dataset.userid;
-                    fname = targetElement.dataset.fname;
-                    lname = targetElement.dataset.lname;
-                    fullName = fname + ' ' + lname;
 
-                    if (window.confirm('Are you sure to delete ' + fullName + '?')) {
+                    pId = targetElement.dataset.pid;
+                    pName = targetElement.dataset.name;
+
+                    // Trigger the confirmation modal
+                    $('#confirmationModal').modal('show');
+
+                    // Handle the confirmation action
+                    $('#confirmAction').unbind().click(function () { // Unbind previous click events
                         $.ajax({
                             method: 'POST',
                             data: {
-                                user_id: userId,
-                                f_name: fname,
-                                l_name: lname
+                                id: pId,
+                                table: 'products'
                             },
-                            url: 'database/delete-user.php',
+                            url: 'database/delete.php',
                             dataType: 'json',
                             success: function (data) {
+                                message = data.success ?
+                                    pName + ' successfully deleted.' : 'Error processing your request';
                                 if (data.success) {
-                                    if (window.alert(data.message)) {
-                                        location.reload();
-                                    } else window.alert(data.message);
+                                    $('#confirmationModal').modal('hide'); // Hide the modal
+                                    alert(message); // You can customize this alert with a modal if needed
+                                    location.reload(); // Refresh the page
                                 }
                             }
-                        })
-                    } else {
-                        console.log('will not delete.');
-                    }
-                }
-
-                if (classList.contains('updateUser')) {
-                    e.preventDefault();
-
-                    firstName = targetElement.closest('tr').querySelector('td.firstName').innerHTML;
-                    lastName = targetElement.closest('tr').querySelector('td.lastName').innerHTML;
-                    email = targetElement.closest('tr').querySelector('td.email').innerHTML;
-                    userId = targetElement.dataset.userid;
-
-                    var modalBody = document.querySelector('#confirmationModal .modal-body');
-                        modalBody.innerHTML = '<form>\
-                            <div class="form-group">\
-                                <label for="firstName">First Name:</label>\
-                                <input type="text" class="form-control" id="firstName" placeholder="Enter first name" value="'+ firstName + '">\
-                            </div>\
-                            <div class="form-group">\
-                                <label for="lastName">Last Name:</label>\
-                                <input type="text" class="form-control" id="lastName" placeholder="Enter last name" value="'+ lastName + '">\
-                            </div>\
-                            <div class="form-group">\
-                                <label for="email">Email:</label>\
-                                <input type="email" class="form-control" id="emailUpdate" placeholder="Enter new email" value="'+ email + '">\
-                            </div>\
-                        </form>';
-
-                        // Show the modal
-                        var modal = new bootstrap.Modal(document.getElementById('confirmationModal'));
-                        modal.show();
-
-                    // Add event listener for the confirmation button inside the modal
-                    document.getElementById('confirmAction').addEventListener('click', function () {
-                        modal.hide();
-                   // Perform AJAX request
-                            $.ajax({
-                                method: 'POST',
-                                data: {
-                                    user_id: userId,
-                                    f_name: document.getElementById('firstName').value,
-                                    l_name: document.getElementById('lastName').value,
-                                    email: document.getElementById('emailUpdate').value
-                                },
-                                url: 'database/update-user.php', // Adjust URL as needed
-                                dataType: 'json',
-                                success: function (data) {
-                                    if (data.success) {
-                                        // Success message
-                                        var successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                                        successModal.show();
-                                        successModal.addEventListener('hidden.bs.modal', function () {
-                                        location.reload();
-                                        });
-                                        
-                                    } else {
-                                        // Error message
-                                        var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
-                                        errorModal.show();  
-                                    }
-                                },
-                                error: function (xhr, status, error) {
-                                    // Handle error if AJAX request fails
-                                    console.error(xhr.responseText);
-                                }
-                            });
                         });
+                    });
                 }
             });
         }

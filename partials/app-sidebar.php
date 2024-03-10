@@ -1,3 +1,8 @@
+<?php
+    $user = $_SESSION['user'];
+?>
+
+
 <div class="dashboardSideBar" id="dashboardSideBar">
        <div class="sideBarLogo">
         <a href=""><img id="sideBarLogo" src="images/E-SCLEPIUS LOGO (2).svg" alt="E-sclepius Logo" /></a>
