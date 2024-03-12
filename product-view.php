@@ -60,7 +60,17 @@
                                         </td>
                                         <td class="lastName"><?= $product['product_name'] ?></td>
                                         <td class="email"><?= $product['description'] ?></td>
-                                        <td><?= $product['created_by'] ?></td>
+                                        <td>
+                                            <?php
+                                                $pid = $product['created_by'];
+                                                $stmt = $conn->prepare("SELECT * FROM users WHERE id=$pid");
+                                                $stmt->execute();
+                                                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                                $created_by_name = $row['first_name'] . ' ' . $row['last_name'];
+                                                echo $created_by_name;
+
+                                            ?>
                                         <td><?= date('M d, Y @ h:i:s A', strtotime($product['updated_at'])) ?></td>
                                         <td><?= date('M d, Y @ h:i:s A', strtotime($product['created_at'])) ?></td>
                                         <td>
@@ -85,19 +95,19 @@
    </div>
 
    <!-- Bootstrap modals-->
-   <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+   <div class="modal fade" id="confirmationDeleteProductModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                <h5 class="modal-title" id="confirmationDeleteProductModalLabel">Confirmation</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Are you sure you want to perform this action?
+                Are you sure you want to delete this product?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="confirmAction">Confirm</button>
+                <button type="button" class="btn btn-primary" id="confirmDeleteProduct">Confirm</button>
             </div>
         </div>
     </div>
@@ -143,6 +153,8 @@
 
     <script>
     function script() {
+        var vm = this;
+
         this.initialize = function () {
             this.registerEvents();
         },
@@ -159,10 +171,10 @@
                     pName = targetElement.dataset.name;
 
                     // Trigger the confirmation modal
-                    $('#confirmationModal').modal('show');
+                    $('#confirmationDeleteProductModal').modal('show');
 
                     // Handle the confirmation action
-                    $('#confirmAction').unbind().click(function () { // Unbind previous click events
+                    document.getElementById('confirmDeleteProduct').addEventListener('click', function () { // Unbind previous click events
                         $.ajax({
                             method: 'POST',
                             data: {
@@ -172,21 +184,87 @@
                             url: 'database/delete.php',
                             dataType: 'json',
                             success: function (data) {
-                                message = data.success ?
-                                    pName + ' successfully deleted.' : 'Error processing your request';
                                 if (data.success) {
-                                    $('#confirmationModal').modal('hide'); // Hide the modal
-                                    alert(message); // You can customize this alert with a modal if needed
-                                    location.reload(); // Refresh the page
-                                }
+                                    if (window.alert(data.message)){
+                                        location.reload();
+                                } else window.alert(message);
                             }
-                        });
+                        }
                     });
-                }
-            });
-        }
-    }
+                    $('#confirmationDeleteProductModal').modal('hide'); // Hide the modal
+                    location.reload();
+                });
+            }
 
+
+                if(classList.contains('updateProduct')) {
+                    e.preventDefault();
+
+                    pId = targetElement.dataset.pid;
+                    vm.showEditDialog(pId);
+                }
+        });
+    }
+        this.showEditDialog = function(id) {
+        $.get('database/get-product.php', { id: id }, function(productDetails) {
+            var modalBody = document.querySelector('#confirmationDeleteProductModal .modal-body');
+            modalBody.innerHTML = '\
+                                <div class="appFormInputContainer">\
+                                    <label for="product_name"><strong>Product Name</strong></label>\
+                                    <input type="text" class="appFormInput" name="product_name" placeholder="Enter product name..." id="product_name">\
+                                </div>\
+                                <div class="appFormInputContainer">\
+                                    <label for="description"><strong>Description</strong></label>\
+                                    <textarea class="appFormInput productTextAreaInput" name="description" id="description" placeholder="Enter product description...">\
+                                    </textarea>\
+                                </div>\
+                                <!--Image Capture-->\
+                                <div class="appFormInputContainer">\
+                                    <label for="img"><strong>Product Image</strong></label><br>\
+                                    <input type="file" name="img" >\
+                                </div>';
+            // Show the modal
+            var modal = new bootstrap.Modal(document.getElementById('confirmationDeleteProductModal'));
+            modal.show();
+
+            // Add event listener for the confirmation button inside the modal
+            document.getElementById('confirmAction').addEventListener('click', function() {
+                modal.hide();
+                // Perform AJAX request
+                $.ajax({
+                    method: 'POST',
+                    data: {
+                        user_id: userId,
+                        f_name: document.getElementById('firstName').value,
+                        l_name: document.getElementById('lastName').value,
+                        email: document.getElementById('emailUpdate').value
+                    },
+                    url: 'database/update-user.php', // Adjust URL as needed
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.success) {
+                            // Success message
+                            var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                            successModal.show();
+                            successModal.addEventListener('hidden.bs.modal', function() {
+                                location.reload();
+                            });
+
+                        } else {
+                            // Error message
+                            var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                            errorModal.show();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error if AJAX request fails
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        }, 'json');
+        }
+}
     var script = new script;
     script.initialize();
 </script>

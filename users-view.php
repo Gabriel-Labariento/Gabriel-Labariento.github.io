@@ -149,22 +149,26 @@
                 targetElement = e.target;
                 classList = targetElement.classList;
 
-                if (classList.contains('deleteUser')) {
+               if (classList.contains('deleteUser')) {
                     e.preventDefault();
                     userId = targetElement.dataset.userid;
                     fname = targetElement.dataset.fname;
                     lname = targetElement.dataset.lname;
                     fullName = fname + ' ' + lname;
 
-                    if (window.confirm('Are you sure to delete ' + fullName + '?')) {
+                    // Trigger the confirmation modal
+                    $('#confirmationDeleteUserModal').modal('show');
+
+                    // Handle the confirmation action
+                    document.getElementById('confirmDeleteUser').addEventListener('click', function () {
+                        // Perform AJAX request
                         $.ajax({
                             method: 'POST',
                             data: {
-                                user_id: userId,
-                                f_name: fname,
-                                l_name: lname
+                                id: userId,
+                                table: 'users',
                             },
-                            url: 'database/delete-user.php',
+                            url: 'database/delete.php',
                             dataType: 'json',
                             success: function (data) {
                                 if (data.success) {
@@ -173,10 +177,10 @@
                                     } else window.alert(data.message);
                                 }
                             }
-                        })
-                    } else {
-                        console.log('will not delete.');
-                    }
+                        });
+                        $('#confirmationDeleteUserModal').modal('hide');
+                        location.reload();
+                    });
                 }
 
                 if (classList.contains('updateUser')) {
@@ -187,7 +191,7 @@
                     email = targetElement.closest('tr').querySelector('td.email').innerHTML;
                     userId = targetElement.dataset.userid;
 
-                    var modalBody = document.querySelector('#confirmationModal .modal-body');
+                    var modalBody = document.querySelector('#confirmationDeleteUserModal .modal-body');
                         modalBody.innerHTML = '<form>\
                             <div class="form-group">\
                                 <label for="firstName">First Name:</label>\
@@ -204,7 +208,7 @@
                         </form>';
 
                         // Show the modal
-                        var modal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+                        var modal = new bootstrap.Modal(document.getElementById('confirmationDeleteUserModal'));
                         modal.show();
 
                     // Add event listener for the confirmation button inside the modal

@@ -5,7 +5,7 @@
     $_SESSION['table'] = 'users';
     $_SESSION['redirect_to'] = 'users-add.php';
     $user = $_SESSION['user'];
-    $users = include('database/show-users.php');
+    $users = include('database/show.php');
 
     // Initialize variables
     $response_message = "";
