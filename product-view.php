@@ -107,46 +107,29 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="confirmDeleteProduct">Confirm</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteProduct">Delete</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+<div class="modal fade" id="confirmationUpdateProductModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="successModalLabel">Successfully Updated</h5>
+                <h5 class="modal-title" id="confirmationUpdateProductModalLabel">Confirmation</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                User was successfully updated. Please refresh the page to see changes.
+
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Okay</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmUpdateProduct">Update</button>
             </div>
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="errorModalLabel">Error</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                There was an error in processing user update.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Okay</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 
     <?php include('partials/app-scripts.php'); ?>
@@ -204,32 +187,38 @@
                     vm.showEditDialog(pId);
                 }
         });
+
+        document.addEventListener('submit', function(e){
+            targetElement = e.target;
+
+            alert(targetElement.id);
+        })
     }
         this.showEditDialog = function(id) {
         $.get('database/get-product.php', { id: id }, function(productDetails) {
-            var modalBody = document.querySelector('#confirmationDeleteProductModal .modal-body');
-            modalBody.innerHTML = '\
+            var modalBody = document.querySelector('#confirmationUpdateProductModal .modal-body');
+            modalBody.innerHTML = '<form action="database/add.php" method="POST" enctype ="multipart/form-data" id="editProductForm">\
                                 <div class="appFormInputContainer">\
                                     <label for="product_name"><strong>Product Name</strong></label>\
-                                    <input type="text" class="appFormInput" name="product_name" placeholder="Enter product name..." id="product_name">\
+                                    <input type="text" class="appFormInput" name="product_name" value="'+ productDetails.product_name + '" placeholder="Enter product name..." id="product_name">\
                                 </div>\
                                 <div class="appFormInputContainer">\
                                     <label for="description"><strong>Description</strong></label>\
-                                    <textarea class="appFormInput productTextAreaInput" name="description" id="description" placeholder="Enter product description...">\
-                                    </textarea>\
+                                    <textarea class="appFormInput productTextAreaInput" name="description" id="description" placeholder="Enter product description..."> '+ productDetails.description +'</textarea>\
                                 </div>\
                                 <!--Image Capture-->\
                                 <div class="appFormInputContainer">\
                                     <label for="img"><strong>Product Image</strong></label><br>\
                                     <input type="file" name="img" >\
-                                </div>';
+                                </div></form>';
             // Show the modal
-            var modal = new bootstrap.Modal(document.getElementById('confirmationDeleteProductModal'));
+            var modal = new bootstrap.Modal(document.getElementById('confirmationUpdateProductModal'));
             modal.show();
 
             // Add event listener for the confirmation button inside the modal
-            document.getElementById('confirmAction').addEventListener('click', function() {
+            document.getElementById('confirmUpdateProduct').addEventListener('click', function() {
                 modal.hide();
+                $('#editProductForm').submit();
                 // Perform AJAX request
                 $.ajax({
                     method: 'POST',
@@ -244,12 +233,7 @@
                     success: function(data) {
                         if (data.success) {
                             // Success message
-                            var successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                            successModal.show();
-                            successModal.addEventListener('hidden.bs.modal', function() {
                                 location.reload();
-                            });
-
                         } else {
                             // Error message
                             var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));

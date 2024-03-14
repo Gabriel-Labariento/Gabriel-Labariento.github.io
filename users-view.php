@@ -101,6 +101,23 @@
     </div>
 </div>
 
+<div class="modal fade" id="confirmationUpdateUserModal" tabindex="-1" aria-labelledby="confirmationDeleteUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationUpdateUserModalLabel">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmUpdateUser">Update</button>
+            </div>
+        </div>
+    </div>
+
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -191,7 +208,7 @@
                     email = targetElement.closest('tr').querySelector('td.email').innerHTML;
                     userId = targetElement.dataset.userid;
 
-                    var modalBody = document.querySelector('#confirmationDeleteUserModal .modal-body');
+                    var modalBody = document.querySelector('#confirmationUpdateUserModal .modal-body');
                         modalBody.innerHTML = '<form>\
                             <div class="form-group">\
                                 <label for="firstName">First Name:</label>\
@@ -208,11 +225,11 @@
                         </form>';
 
                         // Show the modal
-                        var modal = new bootstrap.Modal(document.getElementById('confirmationDeleteUserModal'));
+                        var modal = new bootstrap.Modal(document.getElementById('confirmationUpdateUserModal'));
                         modal.show();
 
                     // Add event listener for the confirmation button inside the modal
-                    document.getElementById('confirmAction').addEventListener('click', function () {
+                    document.getElementById('confirmUpdateUser').addEventListener('click', function () {
                         modal.hide();
                    // Perform AJAX request
                             $.ajax({
@@ -227,13 +244,7 @@
                                 dataType: 'json',
                                 success: function (data) {
                                     if (data.success) {
-                                        // Success message
-                                        var successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                                        successModal.show();
-                                        successModal.addEventListener('hidden.bs.modal', function () {
                                         location.reload();
-                                        });
-                                        
                                     } else {
                                         // Error message
                                         var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
