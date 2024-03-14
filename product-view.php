@@ -134,30 +134,29 @@
 
     <?php include('partials/app-scripts.php'); ?>
 
-    <script>
+ <script>
     function script() {
         var vm = this;
 
         this.initialize = function () {
             this.registerEvents();
-        },
+        };
 
         this.registerEvents = function () {
+            // Register click events
             document.addEventListener('click', function (e) {
-                targetElement = e.target;
-                classList = targetElement.classList;
+                var targetElement = e.target;
+                var classList = targetElement.classList;
 
                 if (classList.contains('deleteProduct')) {
                     e.preventDefault();
-
-                    pId = targetElement.dataset.pid;
-                    pName = targetElement.dataset.name;
-
+                    var pId = targetElement.dataset.pid;
                     // Trigger the confirmation modal
                     $('#confirmationDeleteProductModal').modal('show');
 
                     // Handle the confirmation action
-                    document.getElementById('confirmDeleteProduct').addEventListener('click', function () { // Unbind previous click events
+                    document.getElementById('confirmDeleteProduct').addEventListener('click', function () {
+                        // AJAX request to delete the product
                         $.ajax({
                             method: 'POST',
                             data: {
@@ -168,90 +167,99 @@
                             dataType: 'json',
                             success: function (data) {
                                 if (data.success) {
-                                    if (window.alert(data.message)){
-                                        location.reload();
-                                } else window.alert(message);
+                                    window.alert(data.message);
+                                    location.reload();
+                                } else {
+                                    window.alert(data.message);
+                                }
                             }
-                        }
+                        });
+                        $('#confirmationDeleteProductModal').modal('hide'); // Hide the modal
+                        location.reload();
                     });
-                    $('#confirmationDeleteProductModal').modal('hide'); // Hide the modal
-                    location.reload();
-                });
-            }
-
-
-                if(classList.contains('updateProduct')) {
-                    e.preventDefault();
-
-                    pId = targetElement.dataset.pid;
-                    vm.showEditDialog(pId);
                 }
-        });
 
-        document.addEventListener('submit', function(e){
-            targetElement = e.target;
-
-            alert(targetElement.id);
-        })
-    }
-        this.showEditDialog = function(id) {
-        $.get('database/get-product.php', { id: id }, function(productDetails) {
-            var modalBody = document.querySelector('#confirmationUpdateProductModal .modal-body');
-            modalBody.innerHTML = '<form action="database/add.php" method="POST" enctype ="multipart/form-data" id="editProductForm">\
-                                <div class="appFormInputContainer">\
-                                    <label for="product_name"><strong>Product Name</strong></label>\
-                                    <input type="text" class="appFormInput" name="product_name" value="'+ productDetails.product_name + '" placeholder="Enter product name..." id="product_name">\
-                                </div>\
-                                <div class="appFormInputContainer">\
-                                    <label for="description"><strong>Description</strong></label>\
-                                    <textarea class="appFormInput productTextAreaInput" name="description" id="description" placeholder="Enter product description..."> '+ productDetails.description +'</textarea>\
-                                </div>\
-                                <!--Image Capture-->\
-                                <div class="appFormInputContainer">\
-                                    <label for="img"><strong>Product Image</strong></label><br>\
-                                    <input type="file" name="img" >\
-                                </div></form>';
-            // Show the modal
-            var modal = new bootstrap.Modal(document.getElementById('confirmationUpdateProductModal'));
-            modal.show();
-
-            // Add event listener for the confirmation button inside the modal
-            document.getElementById('confirmUpdateProduct').addEventListener('click', function() {
-                modal.hide();
-                $('#editProductForm').submit();
-                // Perform AJAX request
-                $.ajax({
-                    method: 'POST',
-                    data: {
-                        user_id: userId,
-                        f_name: document.getElementById('firstName').value,
-                        l_name: document.getElementById('lastName').value,
-                        email: document.getElementById('emailUpdate').value
-                    },
-                    url: 'database/update-user.php', // Adjust URL as needed
-                    dataType: 'json',
-                    success: function(data) {
-                        if (data.success) {
-                            // Success message
-                                location.reload();
-                        } else {
-                            // Error message
-                            var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
-                            errorModal.show();
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle error if AJAX request fails
-                        console.error(xhr.responseText);
-                    }
-                });
+                if (classList.contains('updateProduct')) {
+                    e.preventDefault();
+                    var pId = targetElement.dataset.pid;
+                    // Pass the form as a parameter to 'showEditDialog'
+                    vm.showEditDialog(pId, targetElement.closest('tr').querySelector('.editProductForm'));
+                }
             });
-        }, 'json');
-        }
-}
-    var script = new script;
+
+            // Register submit events
+            document.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var targetElement = e.target;
+
+                // Check the form's ID for event target
+                if (targetElement.id === 'editProductForm') {
+                    vm.saveUpdatedData(targetElement);
+                }
+            });
+        };
+
+        this.saveUpdatedData = function (form) {
+            var formData = new FormData(form);
+
+            $.ajax({
+                method: 'POST',
+                processData: false,
+                contentType: false,
+                data: formData,
+                dataType: 'json',
+                url: 'database/update-product.php',
+                success: function (data) {
+                    if (data.success) {
+                        window.alert(data.message);
+                        location.reload();
+                    } else {
+                        var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                        errorModal.show();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        };
+
+        this.showEditDialog = function (id, form) {
+            $.get('database/get-product.php', { id: id }, function (productDetails) {
+                var modalBody = document.querySelector('#confirmationUpdateProductModal .modal-body');
+                modalBody.innerHTML = '<form action="database/update-product.php" method="POST" enctype="multipart/form-data" class="editProductForm">\
+                                            <div class="appFormInputContainer">\
+                                                <label for="product_name"><strong>Product Name</strong></label>\
+                                                <input type="text" class="appFormInput" name="product_name" value="'+ productDetails.product_name + '" placeholder="Enter product name..." id="product_name">\
+                                            </div>\
+                                            <div class="appFormInputContainer">\
+                                                <label for="description"><strong>Description</strong></label>\
+                                                <textarea class="appFormInput productTextAreaInput" name="description" id="description" placeholder="Enter product description...">'+ productDetails.description +'</textarea>\
+                                            </div>\
+                                            <!--Image Capture-->\
+                                            <div class="appFormInputContainer">\
+                                                <label for="img"><strong>Product Image</strong></label><br>\
+                                                <input type="file" name="img" >\
+                                            </div>\
+                                            <input type="hidden" name="pid" value="' + productDetails.id +'" />\
+                                            <input type="submit" value="Submit" class="hidden"/>\
+                                        </form>';
+                // Show the modal
+                var modal = new bootstrap.Modal(document.getElementById('confirmationUpdateProductModal'));
+                modal.show();
+
+                // Add event listener for the confirmation button inside the modal
+                document.getElementById('confirmUpdateProduct').addEventListener('click', function () {
+                    modal.hide();
+                    form.submit();
+                });
+            }, 'json');
+        };
+    }
+
+    var script = new script();
     script.initialize();
 </script>
+
 </body>
 </html>
-

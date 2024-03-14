@@ -1003,3 +1003,7 @@ i.mainMenuIconArrow.hidden{
   max-width: 6.25rem;
   min-height: 6.25rem;
 }
+
+input.hidden {
+  display: none;
+}
