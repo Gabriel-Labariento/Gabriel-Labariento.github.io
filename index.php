@@ -18,7 +18,7 @@
 </head>
 <body id=""> <!-- Body of the webpage -->
     <!-- Header section with login link -->
-    <div class="header">
+    <div class="header"> 
         <a href="login.php">Login</a>
     </div>
     <!-- Banner section with company logo, title, tagline, and registration button -->
